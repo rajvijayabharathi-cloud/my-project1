@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SSLC Mark Sheet - Tamil Nadu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#1b3a6b;         /* deep blue for headers */
+      --accent:#b8860b;           /* golden accent */
+      --border:#333;
+      --bg:#fffef6;               /* light parchment */
+      --text:#111;
+      --muted:#666;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{
+      margin:0;
+      background:#e9e6d8;
+      color:var(--text);
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .sheet{
+      max-width: 900px;
+      margin: 24px auto;
+      background: var(--bg);
+      border: 2px solid var(--border);
+      box-shadow: 0 6px 20px rgba(0,0,0,.12);
+      padding: 24px;
+      position: relative;
+    }
+
+    /* Decorative top band */
+    .top-band{
+      border: 2px solid var(--primary);
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      position: relative;
+      background: linear-gradient(180deg, #fff 0%, #f7f3e6 100%);
+    }
+
+    .emblem{
+      position:absolute;
+      left:16px;
+      top:50%;
+      transform: translateY(-50%);
+      width:64px;
+      height:64px;
+      border:2px solid var(--primary);
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 30% 30%, #f9f1d0 0 30%, transparent 31%),
+        conic-gradient(from 0deg, #d9c27a, #bfa35a, #d9c27a);
+      opacity:.9;
+    }
+
+    .header{
+      text-align:center;
+      color:var(--primary);
+      line-height:1.25;
+    }
+    .header .ta{
+      font-family: "Noto Sans Tamil", "Inter", sans-serif;
+      font-weight:700;
+      font-size: 1.05rem;
+    }
+    .header .en{
+      font-weight:700;
+      font-size: 1.05rem;
+    }
+    .subheader{
+      text-align:center;
+      color:var(--muted);
+      font-size:.95rem;
+      margin-top:4px;
+    }
+
+    .title{
+      text-align:center;
+      margin:12px 0 8px;
+      font-weight:700;
+      font-size:1.15rem;
+      color:#222;
+    }
+    .title .ta{
+      font-family: "Noto Sans Tamil", "Inter", sans-serif;
+      font-weight:700;
+    }
+
+    .meta{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr auto;
+      gap: 12px;
+      align-items:start;
+      margin-top: 8px;
+    }
+
+    .photo{
+      width: 110px;
+      height: 140px;
+      border:1.5px solid var(--border);
+      background:
+        linear-gradient(135deg, #ddd 25%, transparent 25%) -10px 0/ 20px 20px,
+        linear-gradient(225deg, #ddd 25%, transparent 25%) -10px 0/ 20px 20px,
+        linear-gradient(45deg, #ddd 25%, transparent 25%) 0 0/ 20px 20px,
+        linear-gradient(315deg, #ddd 25%, transparent 25%) 0 0/ 20px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#555;
+      font-size:.8rem;
+    }
+    .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+
+    .fields{
+      border:1.5px solid var(--border);
+      padding:10px 12px;
+      background:#fff;
+    }
+    .field{
+      display:flex;
+      gap:8px;
+      margin:6px 0;
+      font-size:.95rem;
+    }
+    .label{
+      min-width: 220px;
+      color:#222;
+      font-weight:600;
+    }
+    .label .ta{
+      font-family: "Noto Sans Tamil", "Inter", sans-serif;
+      font-weight:600;
+    }
+    .value{
+      color:#111;
+    }
+
+    .serial{
+      text-align:right;
+      font-weight:600;
+      color:#222;
+    }
+    .serial .chip{
+      display:inline-block;
+      border:1.5px solid var(--border);
+      padding:4px 8px;
+      background:#fff;
+      margin-left:6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    /* Subjects table */
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:16px;
+      background:#fff;
+    }
+    thead th{
+      background: var(--primary);
+      color:#fff;
+      padding:10px;
+      font-weight:700;
+      border:1.5px solid var(--primary);
+      text-transform:uppercase;
+      font-size:.9rem;
+      letter-spacing:.02em;
+    }
+    tbody td{
+      border:1.5px solid var(--border);
+      padding:10px;
+      font-size:.95rem;
+    }
+    tbody tr:nth-child(odd) td{
+      background:#faf7ea;
+    }
+    .code, .marks{
+      text-align:center;
+      font-weight:600;
+    }
+    .spell{
+      color:var(--muted);
+      font-size:.85rem;
+    }
+
+    /* Totals & result */
+    .totals{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .card{
+      border:1.5px solid var(--border);
+      background:#fff;
+      padding:12px;
+    }
+    .card .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin:6px 0;
+      font-size:1rem;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border:2px solid var(--accent);
+      color:#000;
+      font-weight:700;
+      background: #fff7d6;
+    }
+    .pass{
+      color:#0b6b2b;
+      font-weight:700;
+      font-size:1.05rem;
+    }
+
+    /* Signatures */
+    .signatures{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+    }
+    .sig{
+      border-top:1.5px solid var(--border);
+      padding-top:10px;
+      text-align:center;
+      font-size:.95rem;
+    }
+    .sig .role{
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    /* Footer note */
+    .footer-note{
+      margin-top: 10px;
+      text-align:center;
+      color:#444;
+      font-size:.9rem;
+    }
+
+    /* Print styles */
+    @media print{
+      body{ background:#fff; }
+      .sheet{
+        box-shadow:none;
+        margin:0;
+        border:1.5px solid #000;
+        page-break-inside: avoid;
+      }
+      .photo{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .top-band{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      a[href]:after{ content:""; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="top-band">
+      <div class="emblem" aria-hidden="true"></div>
+      <div class="header">
+        <div class="ta">தமிழ்நாடு மாநில பள்ளி தேர்வுகள் குழுமம்</div>
+        <div class="en">STATE BOARD OF SCHOOL EXAMINATIONS, TAMIL NADU</div>
+        <div class="subheader">DEPARTMENT OF GOVERNMENT EXAMINATIONS, CHENNAI – 600 006</div>
+      </div>
+    </div>
+
+    <div class="title">
+      <span class="ta">இது, நிலைப்பள்ளி பொதுத் தேர்வில் தோற்றிய மாணவர் சான்றிதழ்</span><br/>
+      SECONDARY SCHOOL LEAVING CERTIFICATE — X STANDARD
+    </div>
+
+    <div class="meta">
+      <div class="fields">
+        <div class="field">
+          <div class="label"><span class="ta">பெயர்</span> / NAME OF THE CANDIDATE</div>
+          <div class="value">Vijayabharathi R</div>
+        </div>
+        <div class="field">
+          <div class="label"><span class="ta">பருவம்</span> / SESSION</div>
+          <div class="value">MAR 2024</div>
+        </div>
+        <div class="field">
+          <div class="label"><span class="ta">பிறந்த தேதி</span> / DATE OF BIRTH</div>
+          <div class="value">10-07-2005</div>
+        </div>
+        <div class="field">
+          <div class="label"><span class="ta">தேர்வெண்</span> / EXAM NO</div>
+          <div class="value">1234567</div>
+        </div>
+        <div class="field">
+          <div class="label"><span class="ta">நிரந்தரப் பதிவெண்</span> / PERMANENT REGISTER NO</div>
+          <div class="value">XM24R1234567</div>
+        </div>
+        <div class="field">
+          <div class="label"><span class="ta">பள்ளியின் பெயர்</span> / NAME OF THE SCHOOL</div>
+          <div class="value">Govt Higher Secondary School, Madurai</div>
+        </div>
+      </div>
+
+      <div class="photo">
+  <img src="C:\Users\Vijayabharathi\Downloads\viji.jpg" alt="Candidate Photo" />
+</div>
+</div>
+
+      <div class="serial">
+        <div>Certificate Sl. No.</div>
+        <div class="chip">SEC: 10815420</div>
+      </div>
+    </div>
+
+    <p style="margin-top:12px; font-size:.98rem;">
+      Certified that the above mentioned candidate has appeared for the Secondary School Leaving Certificate Public Examination and obtained the following marks:
+    </p>
+
+    <table aria-label="Subject marks">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Code</th>
+          <th>Marks (out of 100)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>தமிழ் / TAMIL</strong></td>
+          <td class="code">025</td>
+          <td class="marks">085 <span class="spell">EIGHTY FIVE (P)</span></td>
+        </tr>
+        <tr>
+          <td><strong>ஆங்கிலம் / ENGLISH</strong></td>
+          <td class="code">026</td>
+          <td class="marks">078 <span class="spell">SEVENTY EIGHT (P)</span></td>
+        </tr>
+        <tr>
+          <td><strong>கணிதம் / MATHEMATICS</strong></td>
+          <td class="code">080</td>
+          <td class="marks">092 <span class="spell">NINETY TWO (P)</span></td>
+        </tr>
+        <tr>
+          <td><strong>அறிவியல் / SCIENCE</strong></td>
+          <td class="code">074</td>
+          <td class="marks">088 <span class="spell">EIGHTY EIGHT (P)</span></td>
+        </tr>
+        <tr>
+          <td><strong>சமூகவியல் / SOCIAL SCIENCE</strong></td>
+          <td class="code">090</td>
+          <td class="marks">090 <span class="spell">NINETY (P)</span></td>
+        </tr>
+        <tr>
+          <td><strong>விருப்ப மொழி / OPTIONAL LANGUAGE</strong></td>
+          <td class="code">—</td>
+          <td class="marks">—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <div class="card">
+        <div class="row">
+          <div><strong>Total Marks</strong> <span class="spell" style="margin-left:6px;">FOUR THREE THREE</span></div>
+          <div class="badge">433 / 500</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row">
+          <div><strong>Result</strong></div>
+          <div class="pass">PASS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="signatures">
+      <div class="sig">
+        <div>Signature of the Candidate</div>
+        <div class="role">—</div>
+      </div>
+      <div class="sig">
+        <div>Member Secretary</div>
+        <div class="role">State Board of School Examinations (SEC), Tamil Nadu</div>
+      </div>
+      <div class="sig">
+        <div>Director of Government Examinations</div>
+        <div class="role">Tamil Nadu</div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      ISSUED UNDER THE AUTHORITY OF THE GOVERNMENT OF TAMIL NADU
+    </div>
+  </div>
+</body>
+</html>
